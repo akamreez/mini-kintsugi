@@ -1,9 +1,16 @@
 package com.kintsugi.MiniKintusgi.model;
 import java.math.BigDecimal;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 public class Transaction {
 
-    private Long id;
+
+    public Transaction() {
+
+    }
 
     public Long getId() {
         return id;
@@ -44,10 +51,20 @@ public class Transaction {
     public void setStatus(TransactionStatus status) {
         this.status = status;
     }
+    @NotNull
+    private Long id;
 
+    @NotBlank
     private String customerName;
+
+    @NotNull
+    @Positive
     private BigDecimal amount;
+
+    @NotBlank
     private String state;
+
+    @NotNull
     private TransactionStatus status;
 
     public Transaction(Long id, String customerName, BigDecimal amount, String state, TransactionStatus status) {
