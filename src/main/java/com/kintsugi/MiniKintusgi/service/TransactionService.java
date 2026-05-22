@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.kintsugi.MiniKintusgi.model.Transaction;
 import com.kintsugi.MiniKintusgi.dto.TransactionRequestDTO;
-
+import com.kintsugi.MiniKintusgi.dto.TransactionResponseDTO;
 
 @Service
 public class TransactionService {
@@ -12,7 +12,7 @@ public class TransactionService {
 */
     private final List<Transaction> transactions = new ArrayList<>();
 
-    public Transaction createTransaction(TransactionRequestDTO dto){
+    public TransactionResponseDTO createTransaction(TransactionRequestDTO dto){
         Transaction transaction = new Transaction();
 
         transaction.setCustomerName(dto.getCustomerName());
@@ -21,7 +21,24 @@ public class TransactionService {
         transaction.setStatus(dto.getStatus());
 
         transactions.add(transaction);
-        return transaction;
+        TransactionResponseDTO responseDTO =
+                new TransactionResponseDTO();
+
+        responseDTO.setId(transaction.getId());
+
+        responseDTO.setCustomerName(
+                transaction.getCustomerName());
+
+        responseDTO.setAmount(
+                transaction.getAmount());
+
+        responseDTO.setState(
+                transaction.getState());
+
+        responseDTO.setStatus(
+                transaction.getStatus());
+
+        return responseDTO;
 
     }
 

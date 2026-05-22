@@ -1,5 +1,6 @@
 package com.kintsugi.MiniKintusgi.controller;
 
+import com.kintsugi.MiniKintusgi.dto.TransactionResponseDTO;
 import com.kintsugi.MiniKintusgi.model.Transaction;
 import com.kintsugi.MiniKintusgi.service.TransactionService;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class TransactionController {
     } // this is DI
 
     @PostMapping
-    public ResponseEntity<Transaction> createTransaction(@Valid @RequestBody TransactionRequestDTO dto){
+    public ResponseEntity<TransactionResponseDTO> createTransaction(@Valid @RequestBody TransactionRequestDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(transactionService.createTransaction( dto));
 
     }
